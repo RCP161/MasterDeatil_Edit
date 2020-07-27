@@ -1,0 +1,49 @@
+﻿<catel:UserControl
+    x:Class="M1Vm2.Views.PersonTreeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:catel="http://schemas.catelproject.com">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="ID" />
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="{Binding Id}" />
+
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="Name" />
+        <TextBlock
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="2"
+            Text="{Binding Name}" />
+
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="Comment" />
+        <TextBlock
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="2"
+            Text="{Binding Comment}" />
+    </Grid>
+
+</catel:UserControl>

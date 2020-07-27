@@ -1,0 +1,76 @@
+﻿<catel:Window
+    x:Class="M1Vm2.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:catel="http://schemas.catelproject.com"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:M1Vm2.Views"
+    ResizeMode="CanResize">
+
+    <Grid x:Name="LayoutRoot" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListView
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,3"
+            IsEnabled="{Binding IsInEditMode, Converter={catel:BooleanToOppositeBooleanConverter}}"
+            ItemsSource="{Binding Persons}"
+            SelectedItem="{Binding SelectedPerson}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding EditCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:PersonTreeView />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            IsEnabled="{Binding IsInEditMode}">
+            <local:PersonView DataContext="{Binding SelectedPerson}" />
+        </Grid>
+
+        <Button
+            Grid.Row="2"
+            Grid.Column="0"
+            Width="80"
+            Margin="3"
+            HorizontalAlignment="Right"
+            Command="{Binding ModifyModelCommand}"
+            Content="Modify Model" />
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="80"
+            Margin="3"
+            HorizontalAlignment="Right"
+            Command="{Binding RevertCommand}"
+            Content="Revert"
+            IsEnabled="{Binding IsInEditMode}" />
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="80"
+            Margin="3"
+            HorizontalAlignment="Right"
+            Command="{Binding SaveCommand}"
+            Content="Save"
+            IsEnabled="{Binding IsInEditMode}" />
+    </Grid>
+
+</catel:Window>
